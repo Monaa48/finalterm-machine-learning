@@ -1,0 +1,6 @@
+data/
+*.csv
+!submission_fraud_rf_baseline.csv
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store
