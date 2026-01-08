@@ -1,6 +1,7 @@
 data/
 *.csv
 !submission_fraud_rf_baseline.csv
+!regression_model_results.csv
 .ipynb_checkpoints/
 __pycache__/
 .DS_Store
