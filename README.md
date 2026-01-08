@@ -9,6 +9,7 @@
 This repository contains end-to-end projects for the Machine Learning final term, covering:
 - Fraud transaction detection (classification)
 - Regression (predict continuous target from numeric features)
+- Image classification using CNN (Fish dataset)
 
 ---
 
@@ -82,6 +83,35 @@ Predict a continuous target value (e.g., song release year) from numeric audio f
 
 ---
 
+# 03 — CNN Fish Image Classification
+
+## Objective
+Build an end-to-end image classification pipeline using CNN to classify fish images into **31 classes**.
+
+## Workflow Summary
+1. Load dataset from directory structure (`train/val/test`)
+2. Data preprocessing:
+   - Resize images to 224×224
+   - Normalize pixel values
+3. Handle class imbalance:
+   - Compute and apply `class_weight`
+4. CNN from scratch:
+   - Custom CNN architecture + augmentation
+   - Evaluate with accuracy and classification report
+5. Transfer learning:
+   - MobileNetV2 (frozen feature extractor)
+   - Fine-tuning last layers (best model)
+6. Evaluate final model:
+   - Validation accuracy + macro/weighted F1
+   - Test accuracy
+
+## Key Results
+- CNN Scratch: **val_acc ~ 0.7117**
+- MobileNetV2 Frozen: **val_acc ~ 0.8920**
+- MobileNetV2 Fine-tuned (best): **val_acc ~ 0.9149**, **test_acc ~ 0.9188**
+
+---
+
 ## Repository Navigation
 - `01_fraud_transaction.ipynb`  
   End-to-end fraud classification pipeline + submission generation.
@@ -91,6 +121,10 @@ Predict a continuous target value (e.g., song release year) from numeric audio f
   End-to-end regression pipeline (ML + DL comparison).
 - `regression_model_results.csv`  
   Summary of regression model metrics (MAE/RMSE/R²).
+- `03_cnn_fish_classification.ipynb`  
+  End-to-end CNN pipeline (scratch CNN + transfer learning + fine-tuning).
+- `cnn_model_comparison.csv`  
+  Summary comparison for CNN models (scratch vs transfer learning).
 
 ---
 
@@ -98,7 +132,7 @@ Predict a continuous target value (e.g., song release year) from numeric audio f
 Raw datasets are **not uploaded to GitHub** due to size constraints.  
 To run notebooks:
 1. Place datasets in your Google Drive (or local folder)
-2. Update the `DATA_DIR` path inside the notebook accordingly
+2. Update the `DATA_DIR` / dataset path inside the notebook accordingly
 3. Run all cells in sequence
 
 ---
@@ -109,3 +143,4 @@ Main libraries used:
 - numpy
 - scikit-learn
 - tensorflow
+- matplotlib
