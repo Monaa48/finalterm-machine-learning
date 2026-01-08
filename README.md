@@ -6,11 +6,18 @@
 - NIM   : 1103223193
 
 ## Repository Purpose
-This repository contains an end-to-end machine learning pipeline for **fraud transaction detection**.  
-The objective is to predict the probability that an online transaction is fraudulent (`isFraud`).
+This repository contains end-to-end projects for the Machine Learning final term, covering:
+- Fraud transaction detection (classification)
+- Regression (predict continuous target from numeric features)
 
-## Project Overview (Fraud Transaction)
-Workflow implemented in the notebook:
+---
+
+# 01 — Fraud Transaction Detection (Classification)
+
+## Objective
+Predict the probability that an online transaction is fraudulent (`isFraud`).
+
+## Workflow Summary
 1. Load training and testing transaction data
 2. Separate target label (`isFraud`) and remove identifier (`TransactionID`) from features
 3. Data preprocessing:
@@ -38,21 +45,67 @@ Additional evaluation (Random Forest, threshold selected by F1):
 - Best threshold (F1-based): ~0.1967  
 - Fraud class (label 1): Precision ~0.7247, Recall ~0.6637, F1 ~0.6929
 
+---
+
+# 02 — Regression (Continuous Target Prediction)
+
+## Objective
+Predict a continuous target value (e.g., song release year) from numeric audio features.
+
+## Dataset Structure
+- First column: target (`y`)
+- Remaining columns: numeric features (`X`)
+
+## Workflow Summary
+1. Load dataset and perform sanity checks (shape, target range)
+2. Train/validation split
+3. Baseline model:
+   - Ridge Regression (with scaling)
+4. Non-linear model comparison:
+   - Gradient Boosting Regressor
+   - Random Forest Regressor (best)
+5. Basic hyperparameter tuning:
+   - Ridge `alpha` via GridSearchCV
+6. Deep Learning comparison:
+   - MLP (Keras/TensorFlow) trained on the same split
+7. Evaluate using:
+   - MAE, RMSE, R²
+8. Save evaluation summary to CSV
+
+## Models and Metrics (Validation Results)
+| Model | MAE | RMSE | R² |
+|------|----:|-----:|---:|
+| RandomForest (best) | 6.436 | 9.064 | 0.3097 |
+| GradientBoosting | 6.561 | 9.305 | 0.2724 |
+| Ridge (baseline/tuned) | ~6.778 | ~9.523 | ~0.238 |
+| MLP (DL) | 25.172 | 32.955 | -8.125 |
+
+---
+
 ## Repository Navigation
-- `01_fraud_transaction.ipynb` (or `Fraud_Transaction.ipynb`):  
-  Main notebook containing the complete pipeline (preprocessing, training, evaluation, and submission creation).
-- `submission_fraud_rf_baseline.csv`:  
-  Final prediction output for the test dataset.
+- `01_fraud_transaction.ipynb`  
+  End-to-end fraud classification pipeline + submission generation.
+- `submission_fraud_rf_baseline.csv`  
+  Output prediction file for fraud task.
+- `02_regression.ipynb`  
+  End-to-end regression pipeline (ML + DL comparison).
+- `regression_model_results.csv`  
+  Summary of regression model metrics (MAE/RMSE/R²).
+
+---
 
 ## Notes on Dataset
-The raw datasets (`train_transaction.csv`, `test_transaction.csv`) are **not uploaded to GitHub** due to size constraints.  
-To run the notebook:
-1. Place the datasets in your Google Drive (or local folder)
+Raw datasets are **not uploaded to GitHub** due to size constraints.  
+To run notebooks:
+1. Place datasets in your Google Drive (or local folder)
 2. Update the `DATA_DIR` path inside the notebook accordingly
 3. Run all cells in sequence
+
+---
 
 ## Requirements
 Main libraries used:
 - pandas
 - numpy
 - scikit-learn
+- tensorflow
