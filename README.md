@@ -41,6 +41,7 @@ The dataset is imbalanced (fraud ratio ~3.5%), therefore PR-AUC is used as a key
 |------|--------:|------:|
 | Logistic Regression (baseline) | ~0.745 | ~0.137 |
 | Random Forest (baseline, final) | ~0.941 | ~0.736 |
+| MLP (Deep Learning) | ~0.917 | ~0.579 |
 
 Additional evaluation (Random Forest, threshold selected by F1):
 - Best threshold (F1-based): ~0.1967  
